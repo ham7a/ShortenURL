@@ -9,28 +9,30 @@
 <body>
     <div class="container">
         <h1>URL shrinker</h1>
-        <form action="" method="POST" class="my-4" form-inline>
-            <label for="fullURL" class='sr-only'>URL</label>
-            <input type="url" name="fullURL" id="fullURL" placeholder="URL" class="form-control col mr-2" required>
+        <form action="/shortUrls" method="POST" class="my-4 form-inline">
+            <label for="fullUrl" class="sr-only">Url</label>
+            <input required placeholder="Url" type="url" name="fullUrl" id="fullUrl" class="form-control col mr-2">
             <button class="btn btn-success" type="submit">Shrink</button>
-        </form>
+          </form>
 
-        <table class="table table-striped table-responsive">
+          <table class="table table-striped table-responsive">
             <thead>
-                <tr>
-                    <th>Full URL</th>
-                    <th>Short URL</th>
-                    <th>Clicks</th>
-                </tr>
+              <tr>
+                <th>Full URL</th>
+                <th>Short URL</th>
+                <th>Clicks</th>
+              </tr>
             </thead>
             <tbody>
+              <% shortUrls.forEach(shortUrl => { %>
                 <tr>
-                    <td><a href="#">#</a></td>
-                    <td><a href="short#">Short#</a></td>
-                    <td>123</td>
+                  <td><a href="<%= shortUrl.full %>"><%= shortUrl.full %></a></td>
+                  <td><a href="<%= shortUrl.short %>"><%= shortUrl.short %></a></td>
+                  <td><%= shortUrl.clicks %></td>
                 </tr>
+              <% }) %>
             </tbody>
-        </table>
+          </table>
     </div>
 </body>
 </html>
